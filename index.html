@@ -1,10 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Developer Portfolio for Krishnam Jhalani</title>
+    <title>Krishnam Jhalani — Software Engineer</title>
+    <meta
+      name="description"
+      content="Krishnam Jhalani — Computer Science @ Waterloo. Founder, full-stack & ML engineer building production systems."
+    />
+    <script>
+      // Apply saved theme before paint to avoid a flash of the wrong theme.
+      try {
+        var t = localStorage.getItem('kj-theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
