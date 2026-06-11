@@ -1,103 +1,96 @@
-import React from 'react';
-import { Building, Calendar, Award } from 'lucide-react';
+import type { ReactNode } from 'react';
+
+type Job = {
+  date: string;
+  company: ReactNode;
+  role: string;
+  title: string;
+  points: ReactNode[];
+  tags: string[];
+};
+
+const jobs: Job[] = [
+  {
+    date: 'Apr 2026 — Present',
+    company: 'What2Do',
+    role: 'CTO & Founder',
+    title: 'Shipped a full-stack social app to the App Store',
+    points: [
+      'Built the product end-to-end with Next.js 15, React 19, TypeScript and Capacitor — native iOS (Swift) and Android (Kotlin), live on the App Store.',
+      'Architected a Supabase backend: 20+ Postgres tables with row-level security, WebSockets and real-time subscriptions.',
+      'Implemented push at scale over APNs HTTP/2 with JWT / ES256 signing.',
+      <strong style={{ color: 'var(--ink)' }}>1,000+ users in the first 48 hours.</strong>,
+    ],
+    tags: ['Next.js 15', 'React 19', 'Supabase', 'Swift', 'Kotlin', 'Capacitor'],
+  },
+  {
+    date: 'Jan 2026 — Apr 2026',
+    company: 'Blake, Cassels & Graydon LLP',
+    role: 'Business Systems Analyst',
+    title: 'Internal tooling & AI agents across 7 offices',
+    points: [
+      'Built 15+ dashboards and 35+ AI agents driving a 40% efficiency gain for 1,500+ users across 7 offices.',
+      'Ran 50+ stakeholder interviews and authored 100+ UAT test cases to ship reliably into a regulated environment.',
+    ],
+    tags: ['AI Agents', 'Dashboards', 'UAT', 'Stakeholder Discovery'],
+  },
+  {
+    date: 'May 2025 — Aug 2025',
+    company: 'Fluxion AI',
+    role: 'Software Developer',
+    title: 'ML dashboards serving 15,000+ users',
+    points: [
+      'Built React + Python/FastAPI dashboards serving 15,000+ users at 99.5% uptime.',
+      'Trained PyTorch / TensorFlow models for a 77% accuracy improvement over baseline.',
+      'Engineered data tooling over 500+ datasets, reducing processing time by 85%.',
+    ],
+    tags: ['React', 'FastAPI', 'PyTorch', 'TensorFlow'],
+  },
+  {
+    date: 'Feb 2025 — Jun 2025',
+    company: 'Waturbine',
+    role: 'Controls & Power Team',
+    title: 'Embedded controls for a competition wind turbine',
+    points: [
+      'Programmed microcontrollers (Arduino, Teensy) in C/C++ for the International Small Wind Turbine Contest.',
+    ],
+    tags: ['C / C++', 'Arduino', 'Teensy', 'Embedded'],
+  },
+];
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: 'Software Developer',
-      company: 'Fluxion AI',
-      period: 'May 2025 - Present',
-      description: 'Built ML pipelines and React dashboards for AI-driven solutions. Developed physics-informed neural networks and optimized data processing workflows.',
-      achievements: [
-        'Architected ML pipelines serving 15K+ daily requests',
-        'Built responsive React dashboards for data visualization',
-        'Optimized model inference reducing latency by 40%'
-      ],
-      color: 'blue'
-    },
-    {
-      title: 'Controls Engineer',
-      company: 'Waturbine',
-      period: 'Feb 2025 - June 2025',
-      description: 'Optimized control systems using C++ and Python for renewable energy applications. Implemented real-time monitoring and automated control algorithms.',
-      achievements: [
-        'Improved system efficiency by 25% through algorithm optimization',
-        'Developed real-time monitoring dashboards',
-        'Implemented automated control systems reducing manual intervention'
-      ],
-      color: 'purple'
-    },
-    {
-      title: 'Computer Science Student',
-      company: 'University of Waterloo',
-      period: '2024 - 2029',
-      description: 'Second-year Computer Science student and President\'s Scholarship of Distinction recipient. Focused on machine learning, software engineering, and data science coursework.',
-      achievements: [
-        'President\'s Scholarship of Distinction recipient',
-        'Second-year student with strong academic performance',
-        'Relevant coursework: AI/ML, Data Structures, Software Engineering',
-        'Active in tech communities and hackathons'
-      ],
-      color: 'cyan'
-    }
-  ];
-
-  const getColorClasses = (color: string) => {
-    const colors = {
-      blue: 'text-blue-400 border-blue-400 bg-blue-400/10',
-      purple: 'text-purple-400 border-purple-400 bg-purple-400/10',
-      cyan: 'text-cyan-400 border-cyan-400 bg-cyan-400/10'
-    };
-    return colors[color as keyof typeof colors];
-  };
-
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Experience
-          </h2>
-          <p className="text-xl text-slate-300">
-            Building impactful solutions across diverse technical domains
-          </p>
+    <section className="section" id="experience">
+      <div className="wrap">
+        <div className="section-head reveal">
+          <div>
+            <span className="eyebrow">Where I've worked</span>
+            <h2 className="section-title">Experience</h2>
+          </div>
+          <span className="section-num">/ 02 — founder to enterprise</span>
         </div>
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="group relative bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-all duration-300"
-            >
-              <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-6">
-                <div className="flex-shrink-0 mb-4 lg:mb-0">
-                  <div className={`inline-flex items-center px-4 py-2 rounded-lg ${getColorClasses(exp.color)}`}>
-                    <Building size={20} className="mr-2" />
-                    <span className="font-semibold">{exp.company}</span>
-                  </div>
-                </div>
-
-                <div className="flex-grow">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                    <h3 className="text-xl font-bold text-white">{exp.title}</h3>
-                    <div className="flex items-center text-slate-400 mt-1 sm:mt-0">
-                      <Calendar size={16} className="mr-1" />
-                      <span>{exp.period}</span>
-                    </div>
-                  </div>
-
-                  <p className="text-slate-300 mb-4 leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    {exp.achievements.map((achievement, i) => (
-                      <div key={i} className="flex items-start space-x-2">
-                        <Award size={16} className="text-green-400 mt-1 flex-shrink-0" />
-                        <span className="text-slate-300">{achievement}</span>
-                      </div>
-                    ))}
-                  </div>
+        <div className="exp-list">
+          {jobs.map((job) => (
+            <div className="exp reveal" key={job.title}>
+              <div className="exp-meta">
+                <div className="date">{job.date}</div>
+                <div className="company">{job.company}</div>
+                <div className="exp-role">{job.role}</div>
+              </div>
+              <div className="exp-body">
+                <div className="title">{job.title}</div>
+                <ul className="exp-points">
+                  {job.points.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+                <div className="exp-tags">
+                  {job.tags.map((t) => (
+                    <span className="tag" key={t}>
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
