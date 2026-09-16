@@ -29,37 +29,81 @@ export function usePortfolioInteractions() {
     };
     if (toggle) toggle.addEventListener('click', onToggle);
 
-    /* ---------- Nav elevation on scroll ---------- */
-    const nav = document.getElementById('nav');
-    const onScroll = () => {
-      if (!nav) return;
-      if (window.scrollY > 24) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    /* ---------- Query rail: drag to scroll ---------- */
+    const rail = document.querySelector<HTMLElement>('.query-rail');
+    let dragCleanup: (() => void) | undefined;
+    if (rail) {
+      let down = false;
+      let dragged = false;
+      let startX = 0;
+      let startScroll = 0;
+      const onDown = (e: PointerEvent) => {
+        down = true;
+        dragged = false;
+        startX = e.clientX;
+        startScroll = rail.scrollLeft;
+        rail.setPointerCapture(e.pointerId);
+      };
+      const onMove = (e: PointerEvent) => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 4) dragged = true;
+        rail.scrollLeft = startScroll - dx;
+      };
+      const onUp = () => {
+        down = false;
+      };
+      const onClick = (e: MouseEvent) => {
+        if (dragged) {
+          e.preventDefault();
+          e.stopPropagation();
+          dragged = false;
+        }
+      };
+      rail.addEventListener('pointerdown', onDown);
+      rail.addEventListener('pointermove', onMove);
+      rail.addEventListener('pointerup', onUp);
+      rail.addEventListener('pointercancel', onUp);
+      rail.addEventListener('click', onClick, true);
+      dragCleanup = () => {
+        rail.removeEventListener('pointerdown', onDown);
+        rail.removeEventListener('pointermove', onMove);
+        rail.removeEventListener('pointerup', onUp);
+        rail.removeEventListener('pointercancel', onUp);
+        rail.removeEventListener('click', onClick, true);
+      };
+    }
 
     /* ---------- Scroll reveal ---------- */
     const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+    const revealNow = (el: HTMLElement) => el.classList.add('in');
     let io: IntersectionObserver | undefined;
+    const checkReveals = () => {
+      const vh = window.innerHeight;
+      reveals.forEach((el) => {
+        if (el.classList.contains('in')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) revealNow(el);
+      });
+    };
     if ('IntersectionObserver' in window) {
       io = new IntersectionObserver(
         (entries) => {
           entries.forEach((en) => {
             if (en.isIntersecting) {
-              en.target.classList.add('in');
+              revealNow(en.target as HTMLElement);
               io!.unobserve(en.target);
             }
           });
         },
-        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
       );
       reveals.forEach((el) => {
         if (!el.classList.contains('in')) io!.observe(el);
       });
-    } else {
-      reveals.forEach((el) => el.classList.add('in'));
     }
+    window.addEventListener('scroll', checkReveals, { passive: true });
+    requestAnimationFrame(checkReveals);
 
     /* ---------- Card pointer glow ---------- */
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
@@ -73,40 +117,11 @@ export function usePortfolioInteractions() {
       return { card, handler };
     });
 
-    /* ---------- Active nav link on scroll ---------- */
-    const sections = ['work', 'experience', 'skills', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    const navAnchors: Record<string, HTMLAnchorElement> = {};
-    document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach((a) => {
-      const id = (a.getAttribute('href') || '').replace('#', '');
-      navAnchors[id] = a;
-    });
-    let spy: IntersectionObserver | undefined;
-    if ('IntersectionObserver' in window && sections.length) {
-      spy = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((en) => {
-            const a = navAnchors[en.target.id];
-            if (!a) return;
-            if (en.isIntersecting) {
-              Object.keys(navAnchors).forEach((k) => {
-                navAnchors[k].style.color = '';
-              });
-              a.style.color = 'var(--ink)';
-            }
-          });
-        },
-        { rootMargin: '-45% 0px -50% 0px' }
-      );
-      sections.forEach((s) => spy!.observe(s));
-    }
-
     return () => {
       if (toggle) toggle.removeEventListener('click', onToggle);
-      window.removeEventListener('scroll', onScroll);
+      dragCleanup?.();
       io?.disconnect();
-      spy?.disconnect();
+      window.removeEventListener('scroll', checkReveals);
       cardHandlers.forEach(({ card, handler }) => card.removeEventListener('pointermove', handler));
     };
   }, []);

@@ -1,80 +1,63 @@
-import { DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from './icons';
-
-const metrics = [
-  { num: '15,000+', lbl: 'Users served' },
-  { num: '1k+', lbl: 'Users in 48 hrs' },
-  { num: '2×', lbl: 'Hackathon wins' },
-  { num: '99.5%', lbl: 'Prod uptime' },
+const queries = [
+  {
+    n: '01',
+    text: 'Ship a location-based social app to the App Store — 1,000+ users in the first 48 hours.',
+    tag: '/what2do',
+  },
+  {
+    n: '02',
+    text: 'Flag manipulation in prediction markets by scanning 600K+ trades per query in under 10s.',
+    tag: '/omenai',
+  },
+  {
+    n: '03',
+    text: 'Build a HIPAA-compliant AI triage platform with native iOS + Android. 92% accuracy.',
+    tag: '/urgentcare',
+  },
+  {
+    n: '04',
+    text: 'Review 10K+ legal documents with a multi-agent RAG pipeline and grounded citations.',
+    tag: '/lawder',
+  },
+  {
+    n: '05',
+    text: 'Train a transformer job matcher on 50K+ postings. 92% match accuracy.',
+    tag: '/jobility',
+  },
+  {
+    n: '06',
+    text: 'Serve ML dashboards to 15,000+ users at 99.5% uptime — and cut processing time 85%.',
+    tag: '/fluxion',
+  },
 ];
 
 const Hero = () => {
   return (
     <header className="hero" id="home">
-      <div className="wrap">
-        <div className="hero-status reveal in">
-          <span className="dot"></span> Building{' '}
-          <strong style={{ color: 'var(--ink)', fontWeight: 600, margin: '0 2px' }}>What2Do</strong> · Open to SWE
-          internships
-        </div>
-        <h1>
-          <span className="line">
-            <span className="chrome">Krishnam</span>
-          </span>
-          <span className="line">
-            <span className="chrome">Jhalani</span>
-          </span>
-        </h1>
-        <p className="hero-sub">
-          Computer Science <strong>@ University of Waterloo</strong>. Founder &amp; full-stack engineer shipping
-          production systems — from real-time fraud detection to ML platforms serving <strong>15,000+ users</strong>.
-        </p>
-        <div className="hero-role">
-          <span>Founder &amp; CTO, What2Do</span>
-          <span className="sep"></span>
-          <span>Full-Stack</span>
-          <span className="sep"></span>
-          <span>AI / ML</span>
-          <span className="sep"></span>
-          <span>Waterloo, CA</span>
-        </div>
-        <div className="hero-actions">
-          <a className="btn btn-primary" href="resume.pdf" download>
-            <DownloadIcon />
-            Download résumé
-          </a>
-          <div className="hero-socials">
-            <a
-              className="icon-btn"
-              href="https://github.com/kj12354"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub"
-            >
-              <GithubIcon />
-            </a>
-            <a
-              className="icon-btn"
-              href="https://linkedin.com/in/krishnam-jhalani"
-              target="_blank"
-              rel="noopener"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon />
-            </a>
-            <a className="icon-btn" href="mailto:k2jhalani@uwaterloo.ca" aria-label="Email">
-              <MailIcon />
-            </a>
-          </div>
-        </div>
+      <div className="hero-scene" aria-hidden="true">
+        <img src="/hero-garden.png" alt="" />
+        <div className="hero-mist"></div>
+      </div>
 
-        <div className="hero-metrics">
-          {metrics.map((m, i) => (
-            <div className="metric reveal" data-d={i + 1} key={m.lbl}>
-              <div className="num">{m.num}</div>
-              <div className="lbl">{m.lbl}</div>
-            </div>
-          ))}
-        </div>
+      <div className="hero-title">
+        <h1>
+          <span>Hello,</span>
+          <span>I’m Krishnam</span>
+        </h1>
+      </div>
+
+      <div className="query-rail" aria-label="Selected work">
+        {queries.map((q) => (
+          <a className="query-card" href="#work" key={q.n}>
+            <span className="query-num">{q.n}</span>
+            <p className="query-text">{q.text}</p>
+            <span className="query-tag">{q.tag}</span>
+          </a>
+        ))}
+      </div>
+
+      <div className="hero-dock">
+        <div className="building-chip">Waterloo · CS ’29</div>
       </div>
     </header>
   );

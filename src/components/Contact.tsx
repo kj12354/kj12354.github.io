@@ -3,18 +3,15 @@ import { GithubIcon, LinkedinIcon, MailIcon, PhoneIcon } from './icons';
 const Contact = () => {
   return (
     <>
-      <section className="section contact" id="contact">
+      <section className="contact" id="contact">
         <div className="wrap">
-          <span className="eyebrow reveal" style={{ justifyContent: 'center' }}>
-            Let's talk
-          </span>
+          <span className="section-label reveal">Contact</span>
           <h2 className="reveal" data-d="1">
-            <span className="chrome">Let's build</span>
-            <br />
-            <span className="chrome">something real.</span>
+            Put me to work
           </h2>
           <p className="reveal" data-d="2">
-            Open to SWE internships and ambitious side projects. The fastest way to reach me is email — I reply quickly.
+            Open to SWE internships and ambitious side projects. The fastest way to reach me is email — I reply
+            quickly.
           </p>
           <div className="contact-actions reveal" data-d="3">
             <a className="btn btn-primary" href="mailto:k2jhalani@uwaterloo.ca">
@@ -40,13 +37,10 @@ const Contact = () => {
       </section>
 
       <footer className="footer">
-        <div
-          className="wrap"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}
-        >
-          <span className="c">© 2026 Krishnam Jhalani · Built from scratch</span>
+        <div className="wrap footer-inner">
+          <span className="c">© 2026 Krishnam Jhalani</span>
           <div className="links">
-            <a href="#home">Top ↑</a>
+            <a href="#home">Top</a>
             <a href="https://github.com/kj12354" target="_blank" rel="noopener">
               GitHub
             </a>

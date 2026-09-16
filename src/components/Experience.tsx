@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 
 type Job = {
+  n: string;
   date: string;
-  company: ReactNode;
+  company: string;
   role: string;
   title: string;
   points: ReactNode[];
@@ -11,6 +12,7 @@ type Job = {
 
 const jobs: Job[] = [
   {
+    n: '01',
     date: 'Apr 2026 — Present',
     company: 'What2Do',
     role: 'CTO & Founder',
@@ -19,11 +21,12 @@ const jobs: Job[] = [
       'Built the product end-to-end with Next.js 15, React 19, TypeScript and Capacitor — native iOS (Swift) and Android (Kotlin), live on the App Store.',
       'Architected a Supabase backend: 20+ Postgres tables with row-level security, WebSockets and real-time subscriptions.',
       'Implemented push at scale over APNs HTTP/2 with JWT / ES256 signing.',
-      <strong style={{ color: 'var(--ink)' }}>1,000+ users in the first 48 hours.</strong>,
+      <strong key="users">1,000+ users in the first 48 hours.</strong>,
     ],
     tags: ['Next.js 15', 'React 19', 'Supabase', 'Swift', 'Kotlin', 'Capacitor'],
   },
   {
+    n: '02',
     date: 'Jan 2026 — Apr 2026',
     company: 'Blake, Cassels & Graydon LLP',
     role: 'Business Systems Analyst',
@@ -35,6 +38,7 @@ const jobs: Job[] = [
     tags: ['AI Agents', 'Dashboards', 'UAT', 'Stakeholder Discovery'],
   },
   {
+    n: '03',
     date: 'May 2025 — Aug 2025',
     company: 'Fluxion AI',
     role: 'Software Developer',
@@ -47,6 +51,7 @@ const jobs: Job[] = [
     tags: ['React', 'FastAPI', 'PyTorch', 'TensorFlow'],
   },
   {
+    n: '04',
     date: 'Feb 2025 — Jun 2025',
     company: 'Waturbine',
     role: 'Controls & Power Team',
@@ -63,23 +68,21 @@ const Experience = () => {
     <section className="section" id="experience">
       <div className="wrap">
         <div className="section-head reveal">
-          <div>
-            <span className="eyebrow">Where I've worked</span>
-            <h2 className="section-title">Experience</h2>
-          </div>
-          <span className="section-num">/ 02 — founder to enterprise</span>
+          <span className="section-label">Steps</span>
+          <h2 className="section-title">How I work</h2>
         </div>
 
-        <div className="exp-list">
+        <div className="steps-stack">
           {jobs.map((job) => (
-            <div className="exp reveal" key={job.title}>
-              <div className="exp-meta">
+            <article className="step-card reveal" key={job.title}>
+              <span className="step-num">{job.n}</span>
+              <div className="step-meta">
                 <div className="date">{job.date}</div>
                 <div className="company">{job.company}</div>
                 <div className="exp-role">{job.role}</div>
               </div>
-              <div className="exp-body">
-                <div className="title">{job.title}</div>
+              <div className="step-body">
+                <h3 className="step-title">{job.title}</h3>
                 <ul className="exp-points">
                   {job.points.map((point, i) => (
                     <li key={i}>{point}</li>
@@ -93,7 +96,7 @@ const Experience = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
