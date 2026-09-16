@@ -88,7 +88,7 @@ const Hero = () => {
       </div>
 
       <div className="hero-dock">
-        <div className="building-chip">Waterloo · CS ’29</div>
+        <div className="building-chip">UWaterloo · CS</div>
       </div>
     </header>
   );

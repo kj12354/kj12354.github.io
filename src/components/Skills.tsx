@@ -55,18 +55,6 @@ const categories: SkillCat[] = [
     ix: '10',
     chips: ['AWS Solutions Architect', 'Google Data Analytics', 'CKAD'],
   },
-  {
-    name: 'Education',
-    ix: '11',
-    chips: [
-      "BCS Honours, Waterloo · '29",
-      "President's Scholarship of Distinction",
-      'OOP',
-      'Algorithms (Adv.)',
-      'Functional Programs (Adv.)',
-      'Linux Tools',
-    ],
-  },
 ];
 
 const Skills = () => {

@@ -135,11 +135,11 @@ const projects: Project[] = [
     n: '12',
     name: 'Ember',
     kind: 'Voice-first journaling · iOS',
-    desc: 'A voice-first journaling iOS app that reflects a person’s growth back at them: speak → transcribe → a short warm reflection → saved to a local timeline. Growth callbacks resurface a past entry with an encouraging frame; a weekly check-in is a phone-call-style recap of consistency, streak, and themes. SwiftUI + SwiftData on iOS 17+, no backend or network. Voice recording, local persistence, notifications, and the call screen are real; transcription and reflections sit behind protocols so a live AI service can drop in. First launch seeds ~50 entries across 12 months so the timeline, streaks, and callbacks have something to show.',
+    desc: 'A voice-first journaling iOS app that reflects a person’s growth back at them: speak → transcribe → a short warm reflection → saved to a local timeline. Growth callbacks resurface a past entry with an encouraging frame; a weekly check-in is a phone-call-style recap of consistency, streak, and themes. SwiftUI + SwiftData on iOS 17+. Voice recording, local persistence, notifications, and the call screen are real; transcription and reflections sit behind protocols so a live AI service can drop in. First launch seeds ~50 entries across 12 months so the timeline, streaks, and callbacks have something to show.',
     metrics: [
       { v: 'iOS 17+', k: 'SwiftUI + SwiftData' },
       { v: '~50', k: 'Seeded entries' },
-      { v: 'Local', k: 'No backend' },
+      { v: '3.2s', k: 'Speak → save' },
     ],
     tags: ['Swift', 'SwiftUI', 'SwiftData', 'iOS', 'AVFoundation'],
     github: 'https://github.com/kj12354/ember',

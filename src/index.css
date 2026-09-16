@@ -359,7 +359,7 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 
 /* ---------- Manifesto ---------- */
 .manifesto {
-  padding: 120px 0 100px;
+  padding: 120px 0 48px;
   background: var(--bg);
 }
 .manifesto-lead {
@@ -372,6 +372,60 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   color: var(--ink);
 }
 .manifesto-lead em { font-style: italic; }
+.edu-section {
+  padding: 0 0 24px;
+  background: var(--bg);
+}
+.edu-panel {
+  display: grid;
+  grid-template-columns: auto 1fr minmax(220px, 280px);
+  gap: 8px 28px;
+  align-items: end;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  padding: 26px 30px 24px;
+  box-shadow: var(--shadow-card);
+}
+.edu-panel .query-num {
+  align-self: start;
+  padding-top: 2px;
+  color: var(--ink-mute);
+}
+.edu-school {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-top: 8px;
+}
+.edu-degree {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  margin-top: 8px;
+}
+.edu-meta {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.edu-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 2px;
+}
+@media (max-width: 760px) {
+  .edu-panel {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 .manifesto-punch {
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 5.4vw, 3.4rem);
@@ -380,6 +434,7 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   margin: 48px 0 36px;
 }
 .manifesto-punch em { font-style: italic; }
+.manifesto-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* ---------- Sections ---------- */
 .section { padding: 88px 0; }
@@ -403,18 +458,24 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 }
 
 /* ---------- Cards / projects ---------- */
-.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+  align-items: start;
+}
 .card {
   position: relative;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--card);
-  padding: 26px;
+  padding: 22px 24px 20px;
   overflow: hidden;
   transition: transform 0.35s var(--ease), border-color 0.35s, background 0.35s;
   box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
+  align-self: start;
+  height: fit-content;
 }
 .card:hover { transform: translateY(-3px); border-color: var(--line-strong); }
 .card.featured {
@@ -472,7 +533,7 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 }
 .award svg { width: 13px; height: 13px; }
 
-.proj-metrics { display: flex; gap: 28px; margin: 22px 0 0; flex-wrap: wrap; }
+.proj-metrics { display: flex; gap: 28px; margin: 16px 0 0; flex-wrap: wrap; }
 .feat-side .proj-metrics { flex-direction: column; gap: 22px; margin-top: 8px; }
 .pm .v {
   font-family: var(--font-display);
@@ -488,7 +549,7 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   margin-top: 3px;
 }
 
-.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
 .tag {
   font-family: var(--font-mono);
   font-size: 11px;

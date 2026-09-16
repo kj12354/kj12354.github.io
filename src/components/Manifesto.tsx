@@ -16,9 +16,14 @@ const Manifesto = () => {
           <br />
           <em>Let's build.</em>
         </p>
-        <a className="btn btn-primary reveal" data-d="3" href="#contact">
-          Get in touch
-        </a>
+        <div className="manifesto-actions reveal" data-d="3">
+          <a className="btn btn-primary" href="#contact">
+            Get in touch
+          </a>
+          <a className="btn btn-ghost" href="/resume.pdf" download="Krishnam_Jhalani_Resume.pdf">
+            Résumé
+          </a>
+        </div>
       </div>
     </section>
   );

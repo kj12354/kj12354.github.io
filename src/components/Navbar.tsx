@@ -57,7 +57,12 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
-          <a className="menu-cta" href="resume.pdf" download onClick={() => setOpen(false)}>
+          <a
+            className="menu-cta"
+            href="/resume.pdf"
+            download="Krishnam_Jhalani_Resume.pdf"
+            onClick={() => setOpen(false)}
+          >
             Résumé
           </a>
         </div>

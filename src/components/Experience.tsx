@@ -15,7 +15,7 @@ const jobs: Job[] = [
     n: '01',
     date: 'Apr 2026 — Present · Baltimore, MD',
     company: 'What2Do',
-    role: 'CTO & Founder · Software / AI Engineer',
+    role: 'Founder & CTO',
     title: 'Shipped a full-stack social app to the App Store',
     points: [
       'Built the product end-to-end with Next.js 15, React 19, TypeScript and Capacitor — native iOS (Swift) and Android (Kotlin), live on the App Store.',
@@ -104,8 +104,8 @@ const jobs: Job[] = [
   {
     n: '06',
     date: 'Waterloo, ON',
-    company: 'WAT.ai — Weatherloo',
-    role: 'Member, 8–9 person applied ML research team',
+    company: 'WAT.ai',
+    role: 'Core member — Weatherloo',
     title: 'Weather forecasting models vs the GFS baseline',
     points: [
       'Built 48 regression models on ERA5/GFS data; reduced RMSE 5% vs GFS baseline across 35,000+ pairs.',
