@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { CloseIcon, MenuIcon, MoonIcon, SunIcon } from './icons';
 
 const links = [
-  { href: '#work', label: 'Work' },
   { href: '#experience', label: 'Experience' },
+  { href: '#work', label: 'Projects' },
   { href: '#skills', label: 'Skills' },
   { href: '#contact', label: 'Contact' },
 ];

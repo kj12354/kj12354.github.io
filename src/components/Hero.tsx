@@ -29,6 +29,37 @@ const queries = [
     text: 'Serve ML dashboards to 15,000+ users at 99.5% uptime — and cut processing time 85%.',
     tag: '/fluxion',
   },
+  {
+    n: '07',
+    text: 'Build NLP planning and grant-writing tools for Northern communities from StatsCan data.',
+    tag: '/future-cities',
+    href: '#experience',
+  },
+  {
+    n: '08',
+    text: 'Index 15K+ embeddings for developer memory — 94% Top-5 retrieval under 120ms.',
+    tag: '/memoryos',
+  },
+  {
+    n: '09',
+    text: 'Write custom CUDA/Triton kernels and profile them with Nsight against PyTorch/cuBLAS.',
+    tag: '/gpu',
+  },
+  {
+    n: '10',
+    text: 'Detect daughter arteries off an abdominal-aorta mask in contrast CT — classical 3D CV, CPU only.',
+    tag: '/branchseed',
+  },
+  {
+    n: '11',
+    text: 'Author YAML DevOps missions in a sandboxed platform that degrades honestly when Docker isn’t up.',
+    tag: '/opscraft',
+  },
+  {
+    n: '12',
+    text: 'Speak a journal entry on iOS — Ember transcribes, reflects, and files it on a local timeline.',
+    tag: '/ember',
+  },
 ];
 
 const Hero = () => {
@@ -48,7 +79,7 @@ const Hero = () => {
 
       <div className="query-rail" aria-label="Selected work">
         {queries.map((q) => (
-          <a className="query-card" href="#work" key={q.n}>
+          <a className="query-card" href={'href' in q && q.href ? q.href : '#work'} key={q.n}>
             <span className="query-num">{q.n}</span>
             <p className="query-text">{q.text}</p>
             <span className="query-tag">{q.tag}</span>
