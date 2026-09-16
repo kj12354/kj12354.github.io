@@ -373,37 +373,14 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 }
 .manifesto-lead em { font-style: italic; }
 .edu-section {
-  padding: 0 0 24px;
+  padding: 8px 0 0;
   background: var(--bg);
 }
-.edu-panel {
-  display: grid;
-  grid-template-columns: auto 1fr minmax(220px, 280px);
-  gap: 8px 28px;
-  align-items: end;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--card);
-  padding: 26px 30px 24px;
-  box-shadow: var(--shadow-card);
-}
-.edu-panel .query-num {
-  align-self: start;
-  padding-top: 2px;
-  color: var(--ink-mute);
-}
-.edu-school {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.85rem, 3.4vw, 2.55rem);
-  letter-spacing: -0.025em;
-  line-height: 1.08;
-  margin-top: 8px;
-}
+.edu-section .section-head { margin-bottom: 14px; }
 .edu-degree {
   color: var(--ink-soft);
-  font-size: 1.02rem;
-  margin-top: 8px;
+  font-size: 1.12rem;
+  line-height: 1.45;
 }
 .edu-meta {
   font-family: var(--font-mono);
@@ -411,20 +388,10 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   color: var(--ink-mute);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 8px;
 }
-.edu-courses {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-bottom: 2px;
-}
-@media (max-width: 760px) {
-  .edu-panel {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
+.edu-section .chips { margin-top: 18px; }
+.edu-section + .section { padding-top: 64px; }
 
 .manifesto-punch {
   font-family: var(--font-display);

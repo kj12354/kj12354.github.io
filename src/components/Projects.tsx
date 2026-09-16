@@ -123,10 +123,10 @@ const projects: Project[] = [
     n: '11',
     name: 'OpsCraft',
     kind: 'DevOps education platform · sandboxed missions',
-    desc: 'MVP for instructor-authored YAML missions: three levels (700 / 750 / 1000 XP) served by a Next.js app and an API that boots degraded when Docker or the database are missing — /health says so, POST /runs returns a 503 that names what to start. 22 unit/content tests pass, ruff-clean, typechecked. Fixed a verifier that ignored expect_body (any 200 would pass), an image_exists alias so Level 2 actually loads, and an API that used to refuse to start without Docker. Level 2 bakes node:20-bookworm-slim into DinD for offline FROM; Level 3 is a real git remote over SSH plus a post-receive runner on Actions-shaped YAML (not Gitea, because the sandbox has no internet). Scores recompute from an append-only event log. Sandbox provisioning, the PTY bridge, live grading, and 4 integration tests are built and skip cleanly until Docker is up.',
+    desc: 'Instructor-authored YAML missions on Next.js: three levels (700 / 750 / 1000 XP) with an API that boots degraded when Docker or the database are missing — /health says so, POST /runs names what to start. Level 2 runs DinD offline; Level 3 is a real git remote over SSH. Scores recompute from an append-only event log; 22 tests pass.',
     metrics: [
-      { v: '3', k: 'Levels · 700/750/1000 XP' },
-      { v: '22', k: 'Unit/content tests' },
+      { v: '3', k: 'Levels' },
+      { v: '22', k: 'Tests' },
       { v: '503', k: 'Honest degrade' },
     ],
     tags: ['Next.js', 'TypeScript', 'Python', 'Docker', 'DinD', 'YAML', 'SSH', 'CI'],

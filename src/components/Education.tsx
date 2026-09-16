@@ -4,25 +4,19 @@ const Education = () => {
   return (
     <section className="edu-section" id="education">
       <div className="wrap">
-        <article className="edu-panel reveal">
-          <span className="query-num">UW</span>
-          <div className="edu-main">
-            <span className="section-label">Education</span>
-            <h2 className="edu-school">University of Waterloo</h2>
-            <p className="edu-degree">Bachelor of Computer Science (Honours)</p>
-            <p className="edu-meta">Expected April 2029 · President’s Scholarship of Distinction</p>
-          </div>
-          <div className="edu-courses">
-            <span className="section-label">Coursework</span>
-            <div className="chips">
-              {courses.map((c) => (
-                <span className="chip" key={c}>
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-        </article>
+        <div className="section-head reveal">
+          <span className="section-label">Education</span>
+          <h2 className="section-title">University of Waterloo</h2>
+        </div>
+        <p className="edu-degree reveal">Bachelor of Computer Science (Honours)</p>
+        <p className="edu-meta reveal">Expected April 2029 · President’s Scholarship of Distinction</p>
+        <div className="chips reveal">
+          {courses.map((c) => (
+            <span className="chip" key={c}>
+              {c}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

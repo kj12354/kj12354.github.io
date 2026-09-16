@@ -60,7 +60,7 @@ const Navbar = () => {
           <a
             className="menu-cta"
             href="/resume.pdf"
-            download="Krishnam_Jhalani_Resume.pdf"
+            download="Krishnam_Resume.pdf"
             onClick={() => setOpen(false)}
           >
             Résumé
