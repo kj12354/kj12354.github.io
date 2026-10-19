@@ -13,6 +13,19 @@ type Project = {
 const projects: Project[] = [
   {
     n: '02',
+    name: 'Landfall',
+    kind: 'AI market-entry intelligence · Shopify',
+    desc: 'AI-powered global expansion engine that turns Shopify product pages into actionable market-entry intelligence across 12 countries — product-fit scoring, ranked launch blockers, localized copy, live product imports, and ECB FX. Citation-grounded Claude pipeline over a curated tax, payment, and legal knowledge base, with fact-level citations, uncertainty flags, and an eval harness that rejects unsupported claims. Zod-validated streaming inference with automatic retries; SSRF-resistant Shopify ingestion, Redis rate limiting, a global AI-spend cap, prompt-injection isolation, and HMAC-signed shareable reports. 86 unit tests, 12 Playwright e2e tests, desktop/mobile coverage to 360px, WCAG AA in CI, and a 100/100 Lighthouse accessibility score.',
+    metrics: [
+      { v: '12', k: 'Markets' },
+      { v: '86', k: 'Unit tests' },
+      { v: '12', k: 'Playwright e2e' },
+      { v: '100', k: 'Lighthouse a11y' },
+    ],
+    tags: ['Next.js', 'TypeScript', 'Claude API', 'Upstash Redis', 'Zod', 'Vercel'],
+  },
+  {
+    n: '03',
     name: 'UrgentCare',
     kind: 'AI healthcare · mobile',
     desc: 'Triage and diagnostics platform with HIPAA-compliant infrastructure and native iOS + Android apps. CUDA-optimized inference cut latency 40%. Production deep-learning healthcare app at 92% speech-to-text accuracy for 500+ users, with kernel-level CUDA optimization and AWS/Docker performance monitoring.',
@@ -24,7 +37,7 @@ const projects: Project[] = [
     tags: ['PyTorch', 'CUDA', 'C++', 'React', 'AWS', 'Docker', 'Swift', 'Kotlin'],
   },
   {
-    n: '03',
+    n: '04',
     name: 'LawDer',
     kind: 'Legal document analysis · RAG',
     desc: 'Multi-agent LLM system for contract review — semantic search over 10K+ documents with a retrieval-augmented pipeline and grounded citations. LangGraph agents with dynamic routing, tool use, and self-healing retry; PostgreSQL + Redis cut retrieval from minutes to sub-second. Prompt-injection resistance, output validation, and privacy-by-design for regulated legal documents.',
@@ -36,7 +49,7 @@ const projects: Project[] = [
     tags: ['Next.js', 'Flask', 'FastAPI', 'LangChain', 'LangGraph', 'pgvector', 'Cohere', 'ChromaDB', 'RAG'],
   },
   {
-    n: '04',
+    n: '05',
     name: 'Jobility',
     kind: 'Deep-learning job recommender',
     desc: 'Transformer-based matching engine trained on a 50K+ posting dataset, ranking candidates to roles with learned embeddings.',
@@ -47,7 +60,7 @@ const projects: Project[] = [
     tags: ['PyTorch', 'TensorFlow', 'Flask', 'React', 'Transformers'],
   },
   {
-    n: '05',
+    n: '06',
     name: 'DealPulse',
     kind: 'Real-time data platform',
     desc: 'Streaming ingestion + transformation pipelines that replaced manual reporting — cutting hands-on work by 90% with sub-second freshness.',
@@ -58,7 +71,7 @@ const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker'],
   },
   {
-    n: '06',
+    n: '07',
     name: 'TripMind',
     kind: 'AI travel recommendations',
     desc: 'AI travel recommendation platform blending TruncatedSVD with transformer embeddings and a dynamic alpha. pgvector IVFFLAT cosine search over 10K listings; p95 under 300ms at 50 concurrent users via Locust. Celery recomputes preference vectors every 10 interactions, with an A/B framework using chi-square tests.',
@@ -70,7 +83,7 @@ const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'pgvector', 'scikit-learn', 'Celery', 'Redis', 'React'],
   },
   {
-    n: '07',
+    n: '08',
     name: 'MemoryOS',
     kind: 'AI developer memory · RAG',
     desc: 'AI developer memory platform that indexed 1,000+ LLM conversations as structured checkpoints, cutting manual documentation effort by 90%. RAG over 15K+ embeddings with <120ms average retrieval and 94% Top-5 accuracy. Hierarchical summarization cut LLM context size 96%, compressing 150K-token chats. Four-provider LLM backend with Git-backed versioning, pgvector, and CLI/IDE integrations.',
@@ -83,7 +96,7 @@ const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'LangChain', 'pgvector', 'PostgreSQL', 'Git', 'RAG'],
   },
   {
-    n: '08',
+    n: '09',
     name: 'GPU Kernel Optimization',
     kind: 'CUDA · Triton · systems',
     desc: 'Custom CUDA and Triton GPU kernels for ML workloads, benchmarked against PyTorch/cuBLAS to map high-level ops to hardware. Profiled with NVIDIA Nsight for memory bandwidth, occupancy, and register-usage bottlenecks. Raised throughput via tiling, kernel fusion, and memory-access tuning, with a reproducible suite for latency, throughput, and memory across GPU configs.',
@@ -95,7 +108,7 @@ const projects: Project[] = [
     tags: ['CUDA', 'Triton', 'Python', 'Nsight', 'PyTorch', 'cuBLAS'],
   },
   {
-    n: '09',
+    n: '10',
     name: '3D CVXM',
     kind: '3D biomedical simulation',
     desc: '3D biomedical drug-transport model, porting a 2D MATLAB solver to Python. Achieved a 150× speedup (24–48 hrs to <10 min) via Adam-optimizer numerical acceleration, and cut 90th-percentile SSE error 31.6% vs the MATLAB baseline with formal verification and validation.',
@@ -107,7 +120,7 @@ const projects: Project[] = [
     tags: ['Python', 'PyTorch', 'SciPy', 'NumPy', 'SimpleITK'],
   },
   {
-    n: '10',
+    n: '11',
     name: 'Branchseed',
     kind: 'Medical imaging · 3D vessel detection',
     desc: 'Classical-CV detector for the Toralis challenge: finds every eligible artery that branches directly off a supplied abdominal-aorta mask on contrast CT, and writes ostium / seed / radius / direction landmarks in SimpleITK LPS millimetres. Adaptive HU calibration, 3D Frangi vesselness, outward growth, and a centreline walk — CPU only, no GPU, no network, no pretrained weights. Draft score on cases 19–23: precision 0.586, recall 0.895, F1 0.708, typically 0.5–4 s per 1.5 mm case.',
@@ -120,7 +133,7 @@ const projects: Project[] = [
     github: 'https://github.com/kj12354/gaffer_ai',
   },
   {
-    n: '11',
+    n: '12',
     name: 'OpsCraft',
     kind: 'DevOps education platform · sandboxed missions',
     desc: 'Instructor-authored YAML missions on Next.js: three levels (700 / 750 / 1000 XP) with an API that boots degraded when Docker or the database are missing — /health says so, POST /runs names what to start. Level 2 runs DinD offline; Level 3 is a real git remote over SSH. Scores recompute from an append-only event log; 22 tests pass.',
@@ -132,7 +145,7 @@ const projects: Project[] = [
     tags: ['Next.js', 'TypeScript', 'Python', 'Docker', 'DinD', 'YAML', 'SSH', 'CI'],
   },
   {
-    n: '12',
+    n: '13',
     name: 'Ember',
     kind: 'Voice-first journaling · iOS',
     desc: 'A voice-first journaling iOS app that reflects a person’s growth back at them: speak → transcribe → a short warm reflection → saved to a local timeline. Growth callbacks resurface a past entry with an encouraging frame; a weekly check-in is a phone-call-style recap of consistency, streak, and themes. SwiftUI + SwiftData on iOS 17+. Voice recording, local persistence, notifications, and the call screen are real; transcription and reflections sit behind protocols so a live AI service can drop in. First launch seeds ~50 entries across 12 months so the timeline, streaks, and callbacks have something to show.',
