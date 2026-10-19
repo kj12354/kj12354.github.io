@@ -18,7 +18,7 @@ const Contact = () => {
               <MailIcon />
               k2jhalani@uwaterloo.ca
             </a>
-            <a className="btn btn-ghost" href="/resume.pdf" download="Krishnam_Resume.pdf">
+            <a className="btn btn-ghost" href={`${import.meta.env.BASE_URL}resume.pdf`} download="Krishnam_Resume.pdf">
               Résumé
             </a>
           </div>

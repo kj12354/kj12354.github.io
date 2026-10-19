@@ -66,7 +66,7 @@ const Hero = () => {
   return (
     <header className="hero" id="home">
       <div className="hero-scene" aria-hidden="true">
-        <img src="/hero-garden.png" alt="" />
+        <img src={`${import.meta.env.BASE_URL}hero-garden.png`} alt="" />
         <div className="hero-mist"></div>
       </div>
 

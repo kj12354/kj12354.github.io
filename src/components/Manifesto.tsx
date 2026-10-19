@@ -20,7 +20,7 @@ const Manifesto = () => {
           <a className="btn btn-primary" href="#contact">
             Get in touch
           </a>
-          <a className="btn btn-ghost" href="/resume.pdf" download="Krishnam_Resume.pdf">
+          <a className="btn btn-ghost" href={`${import.meta.env.BASE_URL}resume.pdf`} download="Krishnam_Resume.pdf">
             Résumé
           </a>
         </div>

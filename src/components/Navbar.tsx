@@ -59,7 +59,7 @@ const Navbar = () => {
           ))}
           <a
             className="menu-cta"
-            href="/resume.pdf"
+            href={`${import.meta.env.BASE_URL}resume.pdf`}
             download="Krishnam_Resume.pdf"
             onClick={() => setOpen(false)}
           >
