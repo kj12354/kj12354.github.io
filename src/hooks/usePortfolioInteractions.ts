@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
 
 /**
- * Port of the design prototype's script.js: query-rail drag,
- * scroll-reveal, and card pointer glow. DOM-based to mirror the original
- * interactions, with full cleanup so it behaves under React StrictMode remounts.
+ * Query-rail drag, scroll-linked hero/progress, staggered reveals,
+ * and card pointer glow. DOM-based with cleanup for StrictMode remounts.
  */
 export function usePortfolioInteractions() {
   useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hero = document.querySelector<HTMLElement>('.hero');
+    const heroImg = document.querySelector<HTMLElement>('.hero-scene img');
+    const progress = document.getElementById('scrollProgress');
+
+    hero?.classList.add('is-ready');
+
     /* ---------- Query rail: drag to scroll ---------- */
     const rail = document.querySelector<HTMLElement>('.query-rail');
     let dragCleanup: (() => void) | undefined;
@@ -52,19 +58,50 @@ export function usePortfolioInteractions() {
       };
     }
 
+    /* ---------- Scroll-linked motion ---------- */
+    let ticking = false;
+    const updateScroll = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      const max = document.documentElement.scrollHeight - vh;
+      const p = Math.min(1, y / Math.max(vh, 1));
+
+      if (progress) {
+        progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+      }
+      if (reduceMotion) return;
+
+      hero?.style.setProperty('--hero-fade', String(Math.max(0, 1 - p * 1.15)));
+      hero?.style.setProperty('--hero-shift', `${p * 36}px`);
+      if (heroImg) {
+        heroImg.style.transform = `translate3d(0, ${y * 0.28}px, 0)`;
+      }
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateScroll);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateScroll();
+
     /* ---------- Scroll reveal ---------- */
     const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+    reveals.forEach((el) => {
+      const parent = el.parentElement;
+      if (!parent || parent.classList.contains('steps-stack')) return;
+      const siblings = [...parent.children].filter((c) => c.classList.contains('reveal'));
+      const i = siblings.indexOf(el);
+      if (i > 0) el.style.setProperty('--stagger', `${Math.min(i, 7) * 70}ms`);
+    });
+
     const revealNow = (el: HTMLElement) => el.classList.add('in');
     let io: IntersectionObserver | undefined;
-    const checkReveals = () => {
-      const vh = window.innerHeight;
-      reveals.forEach((el) => {
-        if (el.classList.contains('in')) return;
-        const r = el.getBoundingClientRect();
-        if (r.top < vh * 0.92 && r.bottom > 0) revealNow(el);
-      });
-    };
-    if ('IntersectionObserver' in window) {
+
+    if (reduceMotion) {
+      reveals.forEach(revealNow);
+    } else if ('IntersectionObserver' in window) {
       io = new IntersectionObserver(
         (entries) => {
           entries.forEach((en) => {
@@ -74,14 +111,12 @@ export function usePortfolioInteractions() {
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
+        { threshold: 0.14, rootMargin: '0px 0px -10% 0px' }
       );
       reveals.forEach((el) => {
         if (!el.classList.contains('in')) io!.observe(el);
       });
     }
-    window.addEventListener('scroll', checkReveals, { passive: true });
-    requestAnimationFrame(checkReveals);
 
     /* ---------- Card pointer glow ---------- */
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
@@ -98,7 +133,7 @@ export function usePortfolioInteractions() {
     return () => {
       dragCleanup?.();
       io?.disconnect();
-      window.removeEventListener('scroll', checkReveals);
+      window.removeEventListener('scroll', onScroll);
       cardHandlers.forEach(({ card, handler }) => card.removeEventListener('pointermove', handler));
     };
   }, []);

@@ -73,6 +73,19 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   letter-spacing: -0.02em;
   color: var(--ink);
 }
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+  will-change: transform;
+}
 .brand .mark {
   width: 28px;
   height: 28px;
@@ -150,12 +163,14 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 .hero-scene img {
   width: 100%;
-  height: 100%;
+  height: 130%;
   object-fit: cover;
   object-position: center 32%;
+  will-change: transform;
 }
 .hero-mist {
   position: absolute;
@@ -175,6 +190,9 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   padding: 0 24px 14vh;
   pointer-events: none;
   text-align: center;
+  opacity: var(--hero-fade, 1);
+  transform: translate3d(0, var(--hero-shift, 0px), 0);
+  will-change: opacity, transform;
 }
 .hero h1 {
   font-family: var(--font-display);
@@ -189,6 +207,25 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 .hero h1 span:first-child {
   font-style: italic;
   font-weight: 400;
+}
+.hero-title h1 span,
+.query-rail,
+.hero-dock {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+.hero.is-ready .hero-title h1 span {
+  animation: rise-in 1.05s var(--ease) forwards;
+}
+.hero.is-ready .hero-title h1 span:last-child { animation-delay: 0.12s; }
+.hero.is-ready .query-rail {
+  animation: rise-in 0.9s var(--ease) 0.28s forwards;
+}
+.hero.is-ready .hero-dock {
+  animation: rise-in 0.8s var(--ease) 0.42s forwards;
+}
+@keyframes rise-in {
+  to { opacity: 1; transform: none; }
 }
 
 .query-rail {
@@ -673,17 +710,31 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 /* ---------- Reveal ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transform: translate3d(0, 40px, 0);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: calc(var(--stagger, 0ms) + var(--stagger-extra, 0ms));
 }
 .reveal.in { opacity: 1; transform: none; }
-.reveal[data-d='1'] { transition-delay: 0.06s; }
-.reveal[data-d='2'] { transition-delay: 0.12s; }
-.reveal[data-d='3'] { transition-delay: 0.18s; }
-.reveal[data-d='4'] { transition-delay: 0.24s; }
+.reveal[data-d='1'] { --stagger-extra: 60ms; }
+.reveal[data-d='2'] { --stagger-extra: 120ms; }
+.reveal[data-d='3'] { --stagger-extra: 180ms; }
+.reveal[data-d='4'] { --stagger-extra: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal,
+  .hero-title h1 span,
+  .query-rail,
+  .hero-dock {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+  .hero-title { opacity: 1; transform: none; }
+  .hero-scene img { height: 100%; transform: none !important; }
+  .scroll-progress { display: none; }
   .building-dots i { animation: none; opacity: 0.6; }
   html { scroll-behavior: auto; }
 }
