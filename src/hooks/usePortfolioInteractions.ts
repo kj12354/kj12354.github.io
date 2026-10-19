@@ -1,34 +1,12 @@
 import { useEffect } from 'react';
 
 /**
- * Port of the design prototype's script.js: theme toggle (persisted),
- * nav elevation on scroll, scroll-reveal, card pointer glow, and active
- * nav-link highlighting. DOM-based to mirror the original interactions,
- * with full cleanup so it behaves under React StrictMode remounts.
+ * Port of the design prototype's script.js: query-rail drag,
+ * scroll-reveal, and card pointer glow. DOM-based to mirror the original
+ * interactions, with full cleanup so it behaves under React StrictMode remounts.
  */
 export function usePortfolioInteractions() {
   useEffect(() => {
-    const root = document.documentElement;
-
-    /* ---------- Theme ---------- */
-    try {
-      const saved = localStorage.getItem('kj-theme');
-      if (saved) root.setAttribute('data-theme', saved);
-    } catch {
-      /* ignore */
-    }
-    const toggle = document.getElementById('themeToggle');
-    const onToggle = () => {
-      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', next);
-      try {
-        localStorage.setItem('kj-theme', next);
-      } catch {
-        /* ignore */
-      }
-    };
-    if (toggle) toggle.addEventListener('click', onToggle);
-
     /* ---------- Query rail: drag to scroll ---------- */
     const rail = document.querySelector<HTMLElement>('.query-rail');
     let dragCleanup: (() => void) | undefined;
@@ -118,7 +96,6 @@ export function usePortfolioInteractions() {
     });
 
     return () => {
-      if (toggle) toggle.removeEventListener('click', onToggle);
       dragCleanup?.();
       io?.disconnect();
       window.removeEventListener('scroll', checkReveals);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CloseIcon, MenuIcon, MoonIcon, SunIcon } from './icons';
+import { CloseIcon, MenuIcon } from './icons';
 
 const links = [
   { href: '#experience', label: 'Experience' },
@@ -31,10 +31,6 @@ const Navbar = () => {
           <span>Krishnam Jhalani</span>
         </a>
         <div className="nav-tools">
-          <button className="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <MoonIcon />
-            <SunIcon />
-          </button>
           <button
             className="icon-btn menu-btn"
             aria-label={open ? 'Close menu' : 'Open menu'}

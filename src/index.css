@@ -25,30 +25,10 @@
   --pill: #ffffff;
   --maxw: 1080px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --hero-filter: none;
-}
-
-[data-theme='dark'] {
-  --bg: #16130f;
-  --bg-elev: #1d1914;
-  --ink: #f4efe6;
-  --ink-soft: rgba(244, 239, 230, 0.72);
-  --ink-mute: rgba(244, 239, 230, 0.48);
-  --ink-faint: rgba(244, 239, 230, 0.28);
-  --line: rgba(244, 239, 230, 0.1);
-  --line-strong: rgba(244, 239, 230, 0.18);
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-2: rgba(255, 255, 255, 0.08);
-  --card: rgba(32, 28, 22, 0.78);
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 24px 50px -28px rgba(0, 0, 0, 0.7);
-  --btn: #f4efe6;
-  --btn-ink: #16130f;
-  --pill: rgba(22, 19, 15, 0.72);
-  --hero-filter: brightness(0.55) saturate(0.85) contrast(1.05);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 20px; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; -webkit-text-size-adjust: 100%; color-scheme: light; }
 body {
   font-family: var(--font-body);
   background: var(--bg);
@@ -57,7 +37,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  transition: background 0.5s var(--ease), color 0.5s var(--ease);
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
@@ -123,9 +102,6 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 }
 .icon-btn:hover { transform: translateY(-1px); }
 .icon-btn svg { width: 18px; height: 18px; }
-.theme-toggle .sun { display: none; }
-[data-theme='light'] .theme-toggle .sun { display: block; }
-[data-theme='light'] .theme-toggle .moon { display: none; }
 
 .menu-overlay {
   position: fixed;
@@ -180,7 +156,6 @@ button { font: inherit; background: none; border: 0; color: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: center 32%;
-  filter: var(--hero-filter);
 }
 .hero-mist {
   position: absolute;
@@ -189,11 +164,6 @@ button { font: inherit; background: none; border: 0; color: inherit; }
     linear-gradient(180deg, rgba(250, 248, 245, 0.22) 0%, transparent 22%, transparent 58%, rgba(250, 248, 245, 0.55) 100%),
     radial-gradient(60% 50% at 50% 42%, transparent 40%, rgba(250, 248, 245, 0.18) 100%);
   pointer-events: none;
-}
-[data-theme='dark'] .hero-mist {
-  background:
-    linear-gradient(180deg, rgba(22, 19, 15, 0.35) 0%, transparent 24%, transparent 55%, rgba(22, 19, 15, 0.7) 100%),
-    radial-gradient(60% 50% at 50% 42%, transparent 40%, rgba(22, 19, 15, 0.2) 100%);
 }
 
 .hero-title {
@@ -219,10 +189,6 @@ button { font: inherit; background: none; border: 0; color: inherit; }
 .hero h1 span:first-child {
   font-style: italic;
   font-weight: 400;
-}
-[data-theme='dark'] .hero h1 {
-  color: #f4efe6;
-  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 
 .query-rail {
